@@ -1,5 +1,4 @@
 import React from "react";
-import api from "./utils/Api";
 
 function Card(props) {
   function handleCardClick() {

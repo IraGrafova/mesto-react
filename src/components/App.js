@@ -3,7 +3,7 @@ import Header from "./Header";
 import Main from "./Main";
 import Footer from "./Footer";
 import PopupWithForm from "./PopupWithForm";
-import api from "./utils/Api";
+import api from "../utils/Api";
 import ImagePopup from "./ImagePopup";
 
 function App() {
@@ -20,7 +20,6 @@ function App() {
   //открытие попапов
   function handleAddPlaceClick() {
     setIsAddPlacePopupOpen(true);
-    // document.addEventListener("keydown", this._escClose);
   }
 
   function handleEditProfileClick() {
@@ -41,7 +40,6 @@ function App() {
 
   React.useEffect(() => {
     api.getAllCards().then((data) => {
-      //console.log(data)
       setCards(
         data.map((item) => ({
           // создаем новый массив карточек и передаем в него данные, полученные от сервера
