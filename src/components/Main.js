@@ -3,8 +3,6 @@ import Card from "./Card";
 import api from "./utils/Api";
 
 function Main(props) {
-  console.log("main:" + props.onCardClick);
-
   const [userName, setUserName] = React.useState();
   const [userDescription, setUserDescription] = React.useState();
   const [userAvatar, setUserAvatar] = React.useState();
@@ -35,11 +33,11 @@ function Main(props) {
           <div className="profile-info">
             <div className="profile-info__name">
               <h1 className="profile-info__title">{userName}</h1>
-              <buttons
+              <button
                 className="profile-info__edit-button"
                 type="button"
                 onClick={props.onEditProfile}
-              ></buttons>
+              ></button>
             </div>
             <p className="profile-info__subtitle">{userDescription}</p>
           </div>

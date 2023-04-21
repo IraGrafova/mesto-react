@@ -4,7 +4,6 @@ import api from "./utils/Api";
 function Card(props) {
   function handleCardClick() {
     props.onCardClick(props.card);
-    console.log(props.card);
   }
 
   return (
