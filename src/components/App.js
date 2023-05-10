@@ -21,7 +21,7 @@ function App() {
   const [cards, setCards] = React.useState([]);
   const [selectedCard, setSelectedCard] = React.useState(null);
 
-  const [currentUser, setCurrentUser] = React.useState([]); //что сюда в нулевое значение?
+  const [currentUser, setCurrentUser] = React.useState({});
 
   //открытие попапов
   function handleAddPlaceClick() {
@@ -51,10 +51,11 @@ function App() {
 
     // Отправляем запрос в API и получаем обновлённые данные карточки
     api.putLike(card._id, isLiked).then((newCard) => {
-      setCards((state) =>
+      setCards((state) =>  //в state хранятся карточки из setCards
         state.map((oldCard) => (oldCard._id === card._id ? newCard : oldCard))
-      ); //в state хранятся карточки из setCards
-    });
+      )
+    }).catch((err) => {
+      alert(err)});
   }
 
   //удаление карточек
@@ -62,40 +63,52 @@ function App() {
     // Отправляем запрос в API и после ответа фильтруем исходные карточки, удаляя ту, с которой совпали id
     api.deleteCard(card._id).then(() => {
       setCards((cards) => cards.filter((item) => item._id !== card._id));
-    });
+    })
+    .catch((err) => {
+      alert(err)});
   }
 
   React.useEffect(() => {
     api.getUserInfo().then((data) => {
       setCurrentUser(data);
-    });
+    })
+    .catch((err) => {
+      alert(err)});
   }, []);
 
   React.useEffect(() => {
     api.getAllCards().then((data) => {
       setCards(data);
-    });
+    })
+    .catch((err) => {
+      alert(err)});
   }, []);
 
   function handleUpdateUser(updateData) {
     api.editUserInfo(updateData).then((data) => {
       setCurrentUser(data);
       closeAllPopups();
-    });
+    })
+    .catch((err) => {
+      alert(err)});
   }
 
   function handleUpdateAvatar(updateData) {
     api.editAvatar(updateData).then((data) => {
       setCurrentUser(data);
       closeAllPopups();
-    });
+    })
+    .catch((err) => {
+      alert(err)});
   }
 
   function handleAddPlaceSubmit(newCard) {
     api.saveCard(newCard).then((newCard) => {
       setCards([newCard, ...cards]);
       closeAllPopups();
-    });
+    })
+    .catch((err) => {
+      alert(err)});
   }
 
   return (
