@@ -1,7 +1,8 @@
 import React from "react";
+import EditProfilePopup from "./EditProfilePopup";
 
-function PopupWithForm({title, name, children, isOpen, textButton, onClose}) { //title, name, children, isOpen, textButton, onClose
-
+function PopupWithForm({title, name, children, isOpen, textButton, onClose, onSubmit }) { //title, name, children, isOpen, textButton, onClose
+//console.log(onSubmit)
   return (
     <div
       className={`popup popup_type_${name} ${
@@ -14,13 +15,13 @@ function PopupWithForm({title, name, children, isOpen, textButton, onClose}) { /
           onClick={onClose}
           type="button"
         ></button>
-        <form className="card-form" name={name} id={`${name}-form`}>
+        <form className="card-form" name={name} id={`${name}-form`} onSubmit={onSubmit}>
           <h2 className="card-form__title">{title}</h2>
           {children}
           <button
-            className="card-form__save card-form__save_disabled"
+            className="card-form__save"
             type="submit"
-            disabled
+
           >
             {textButton}
           </button>
@@ -29,5 +30,7 @@ function PopupWithForm({title, name, children, isOpen, textButton, onClose}) { /
     </div>
   );
 }
+//disabled
+// card-form__save_disabled
 
 export default PopupWithForm;

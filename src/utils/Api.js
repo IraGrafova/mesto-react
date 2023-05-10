@@ -67,23 +67,25 @@ class Api {
     });
   }
 
-  putLike(idCard) {
-    return fetch(`${this._url}/cards/${idCard}/likes`, {
+  //если карточка не лайкнута то => лайк, иначе убери
+  putLike(idCard, isLiked) {
+    if(!isLiked) {
+      return fetch(`${this._url}/cards/${idCard}/likes`, {
       method: "PUT",
       headers: this._headers,
     }).then((res) => {
       return this._getResponseData(res);
     });
   }
-
-  removeLike(idCard) {
     return fetch(`${this._url}/cards/${idCard}/likes`, {
       method: "DELETE",
       headers: this._headers,
     }).then((res) => {
       return this._getResponseData(res);
     });
-  }
+
+    }
+
 }
 
 const api = new Api({
