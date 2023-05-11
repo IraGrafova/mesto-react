@@ -5,15 +5,6 @@ import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
 function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar }) {
   const ref = useRef();
-  const [avatar, setAvatar] = React.useState("");
-
-  //подписка на контекст
-  const currentUser = React.useContext(CurrentUserContext);
-  // После загрузки текущего пользователя из API
-  // его данные будут использованы в управляемых компонентах.
-  React.useEffect(() => {
-    setAvatar(currentUser?.avatar);
-  }, [currentUser]);
 
   function handleSubmit(e) {
     e.preventDefault();
